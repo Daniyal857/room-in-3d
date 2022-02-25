@@ -3,7 +3,7 @@ export default [
     name: 'base',
     data: {},
     items: [
-      { name: 'lennaTexture', source: '/assets/lenna.png', type: 'texture' },
+      { name: 'baked1Texture', source: '/assets/baked.jpg', type: 'texture' },
       { name: 'roomModal', source: '/assets/roomModal.glb' }
     ]
   }

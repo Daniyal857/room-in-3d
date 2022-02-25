@@ -29,6 +29,19 @@ export default class World {
     this.room = {};
     this.room.model = this.resources.items.roomModal.scene;
 
+    this.room.texture = this.resources.items.baked1Texture;
+    this.room.texture.encoding = THREE.sRGBEncoding;
+
+    this.room.material = new THREE.MeshBasicMaterial({
+      map: this.room.texture
+    });
+
+    this.room.model.traverse(_child => {
+      if (_child instanceof THREE.Mesh) {
+        _child.material = this.room.material;
+      }
+    });
+
     this.scene.add(this.room.model);
     const directionalLight = new THREE.DirectionalLight('#ffffff', 3);
     directionalLight.position.set(5, 5, 5);
