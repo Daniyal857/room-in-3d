@@ -1,11 +1,11 @@
 import * as THREE from 'three';
+import Experience from './Experience.js';
 import normalizeWheel from 'normalize-wheel';
-
-import Experience from './Experience';
 
 export default class Navigation {
   constructor() {
     this.experience = new Experience();
+    this.targetElement = this.experience.targetElement;
     this.camera = this.experience.camera;
     this.config = this.experience.config;
     this.time = this.experience.time;
@@ -15,12 +15,14 @@ export default class Navigation {
 
   setView() {
     this.view = {};
+
     this.view.spherical = {};
     this.view.spherical.value = new THREE.Spherical(
       30,
       Math.PI * 0.35,
       -Math.PI * 0.25
     );
+    // this.view.spherical.value.radius = 5
     this.view.spherical.smoothed = this.view.spherical.value.clone();
     this.view.spherical.smoothing = 0.005;
     this.view.spherical.limits = {};
@@ -30,6 +32,7 @@ export default class Navigation {
 
     this.view.target = {};
     this.view.target.value = new THREE.Vector3(0, 2, 0);
+    // this.view.target.value.set(0, 3, -3)
     this.view.target.smoothed = this.view.target.value.clone();
     this.view.target.smoothing = 0.005;
     this.view.target.limits = {};
@@ -74,12 +77,17 @@ export default class Navigation {
     };
 
     /**
-     * Mouse Events
+     * Mouse events
      */
-
     this.view.onMouseDown = _event => {
+      _event.preventDefault();
+
       this.view.drag.alternative =
-        _event.button === 2 || _event.ctrlKey || _event.shiftKey;
+        _event.button === 2 ||
+        _event.button === 1 ||
+        _event.ctrlKey ||
+        _event.shiftKey;
+
       this.view.down(_event.clientX, _event.clientY);
 
       window.addEventListener('mouseup', this.view.onMouseUp);
@@ -87,23 +95,30 @@ export default class Navigation {
     };
 
     this.view.onMouseMove = _event => {
+      _event.preventDefault();
+
       this.view.move(_event.clientX, _event.clientY);
     };
 
-    this.view.onMouseUp = () => {
+    this.view.onMouseUp = _event => {
+      _event.preventDefault();
+
       this.view.up();
 
       window.removeEventListener('mouseup', this.view.onMouseUp);
       window.removeEventListener('mousemove', this.view.onMouseMove);
     };
 
-    window.addEventListener('mousedown', this.view.onMouseDown);
+    this.targetElement.addEventListener('mousedown', this.view.onMouseDown);
 
     /**
-     * Touch Events
+     * Touch events
      */
-
     this.view.onTouchStart = _event => {
+      _event.preventDefault();
+
+      this.view.drag.alternative = _event.touches.length > 1;
+
       this.view.down(_event.touches[0].clientX, _event.touches[0].clientY);
 
       window.addEventListener('touchend', this.view.onTouchEnd);
@@ -111,10 +126,14 @@ export default class Navigation {
     };
 
     this.view.onTouchMove = _event => {
+      _event.preventDefault();
+
       this.view.move(_event.touches[0].clientX, _event.touches[0].clientY);
     };
 
-    this.view.onTouchEnd = () => {
+    this.view.onTouchEnd = _event => {
+      _event.preventDefault();
+
       this.view.up();
 
       window.removeEventListener('touchend', this.view.onTouchEnd);
@@ -124,18 +143,18 @@ export default class Navigation {
     window.addEventListener('touchstart', this.view.onTouchStart);
 
     /**
-     * Context Menu
+     * Context menu
      */
     this.view.onContextMenu = _event => {
       _event.preventDefault();
     };
+
     window.addEventListener('contextmenu', this.view.onContextMenu);
 
     /**
-     * Mouse Wheel
+     * Wheel
      */
     this.view.onWheel = _event => {
-      // console.log('wheel', _event);
       _event.preventDefault();
 
       const normalized = normalizeWheel(_event);
@@ -155,6 +174,7 @@ export default class Navigation {
     // Zoom
     this.view.spherical.value.radius +=
       this.view.zoom.delta * this.view.zoom.sensitivity;
+
     // Apply limits
     this.view.spherical.value.radius = Math.min(
       Math.max(
@@ -252,7 +272,6 @@ export default class Navigation {
     viewPosition.add(this.view.target.smoothed);
 
     this.camera.modes.default.instance.position.copy(viewPosition);
-
     this.camera.modes.default.instance.lookAt(this.view.target.smoothed);
   }
 }
