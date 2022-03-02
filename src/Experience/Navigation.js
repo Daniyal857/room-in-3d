@@ -82,8 +82,6 @@ export default class Navigation {
         _event.button === 2 || _event.ctrlKey || _event.shiftKey;
       this.view.down(_event.clientX, _event.clientY);
 
-      console.log('onmousedown', this.view.drag.alternative);
-
       window.addEventListener('mouseup', this.view.onMouseUp);
       window.addEventListener('mousemove', this.view.onMouseMove);
     };

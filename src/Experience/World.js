@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import Experience from './Experience.js';
+import GoogleLeds from './GoogleLeds.js';
 
 export default class World {
   constructor(_options) {
@@ -12,6 +13,7 @@ export default class World {
       if (_group.name === 'base') {
         // this.setDummy();
         this.setRoom();
+        this.setGoogleLeds();
       }
     });
   }
@@ -47,6 +49,10 @@ export default class World {
     const directionalLight = new THREE.DirectionalLight('#ffffff', 3);
     directionalLight.position.set(-15, 15, 15);
     this.scene.add(directionalLight);
+  }
+
+  setGoogleLeds() {
+    this.googleLeds = new GoogleLeds();
   }
 
   resize() {}
