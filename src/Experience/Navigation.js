@@ -22,7 +22,6 @@ export default class Navigation {
       Math.PI * 0.35,
       -Math.PI * 0.25
     );
-    // this.view.spherical.value.radius = 5
     this.view.spherical.smoothed = this.view.spherical.value.clone();
     this.view.spherical.smoothing = 0.005;
     this.view.spherical.limits = {};
