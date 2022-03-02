@@ -57,7 +57,9 @@ export default class World {
 
   resize() {}
 
-  update() {}
+  update() {
+    if (this.googleLeds) this.googleLeds.update();
+  }
 
   destroy() {}
 }
