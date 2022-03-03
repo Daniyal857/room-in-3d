@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 
 import Experience from './Experience.js';
-import vertexShader from './Shaders/coffeeSteam/vertex.glsl';
-import fragmentShader from './Shaders/coffeeSteam/fragment.glsl';
+import vertexShader from './shaders/coffeeSteam/vertex.glsl';
+import fragmentShader from './shaders/coffeeSteam/fragment.glsl';
 
 export default class CoffeeSteam {
   constructor() {
@@ -25,17 +25,69 @@ export default class CoffeeSteam {
 
   setModel() {
     this.model = {};
+
+    this.model.color = '#d2958a';
+
+    // Material
     this.model.material = new THREE.ShaderMaterial({
-      // wireframe: true,
+      transparent: true,
+      depthWrite: false,
       vertexShader,
       fragmentShader,
-      transparent: true
+      uniforms: {
+        uTime: { value: 0 },
+        uTimeFrequency: { value: 0.0006 },
+        uUvFrequency: { value: new THREE.Vector2(8, 4) },
+        uColor: { value: new THREE.Color(this.model.color) }
+      }
     });
+
+    // Mesh
     this.model.mesh = this.resources.items.coffeeSteamModel.scene.children[0];
     this.model.mesh.material = this.model.material;
     this.scene.add(this.model.mesh);
-    console.log('mesh', this.model.mesh);
+
+    if (this.debug) {
+      this.debugFolder
+        .addInput(this.model, 'color', {
+          view: 'color'
+        })
+        .on('change', () => {
+          this.model.material.uniforms.uColor.value.set(this.model.color);
+        });
+
+      this.debugFolder.addInput(
+        this.model.material.uniforms.uTimeFrequency,
+        'value',
+        {
+          label: 'uTimeFrequency',
+          min: 0.0001,
+          max: 0.005,
+          step: 0.0001
+        }
+      );
+      this.debugFolder.addInput(
+        this.model.material.uniforms.uUvFrequency.value,
+        'x',
+        {
+          min: 0.001,
+          max: 20,
+          step: 0.001
+        }
+      );
+      this.debugFolder.addInput(
+        this.model.material.uniforms.uUvFrequency.value,
+        'y',
+        {
+          min: 0.001,
+          max: 20,
+          step: 0.001
+        }
+      );
+    }
   }
 
-  update() {}
+  update() {
+    this.model.material.uniforms.uTime.value = this.time.elapsed;
+  }
 }
