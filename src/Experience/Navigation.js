@@ -20,8 +20,12 @@ export default class Navigation {
     this.view.spherical.value = new THREE.Spherical(
       30,
       Math.PI * 0.35,
-      -Math.PI * 0.25
+      Math.PI * 0.25
     );
+
+    // for coffeeSmooke
+    this.view.spherical.value.radius = 5;
+
     this.view.spherical.smoothed = this.view.spherical.value.clone();
     this.view.spherical.smoothing = 0.005;
     this.view.spherical.limits = {};
@@ -31,7 +35,9 @@ export default class Navigation {
 
     this.view.target = {};
     this.view.target.value = new THREE.Vector3(0, 2, 0);
-    // this.view.target.value.set(0, 3, -3)
+
+    this.view.target.value.set(-7, 0, -3); //for testing , coffeeSmooke
+
     this.view.target.smoothed = this.view.target.value.clone();
     this.view.target.smoothing = 0.005;
     this.view.target.limits = {};
@@ -219,13 +225,13 @@ export default class Navigation {
         this.config.smallestSide;
 
       // Apply limits
-      this.view.spherical.value.theta = Math.min(
-        Math.max(
-          this.view.spherical.value.theta,
-          this.view.spherical.limits.theta.min
-        ),
-        this.view.spherical.limits.theta.max
-      );
+      // this.view.spherical.value.theta = Math.min(
+      //   Math.max(
+      //     this.view.spherical.value.theta,
+      //     this.view.spherical.limits.theta.min
+      //   ),
+      //   this.view.spherical.limits.theta.max
+      // );
       this.view.spherical.value.phi = Math.min(
         Math.max(
           this.view.spherical.value.phi,
