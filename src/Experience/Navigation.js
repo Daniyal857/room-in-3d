@@ -24,7 +24,7 @@ export default class Navigation {
     );
 
     // for coffeeSmooke
-    this.view.spherical.value.radius = 5;
+    // this.view.spherical.value.radius = 5;
 
     this.view.spherical.smoothed = this.view.spherical.value.clone();
     this.view.spherical.smoothing = 0.005;
@@ -36,7 +36,7 @@ export default class Navigation {
     this.view.target = {};
     this.view.target.value = new THREE.Vector3(0, 2, 0);
 
-    this.view.target.value.set(-7, 0, -3); //for testing , coffeeSmooke
+    // this.view.target.value.set(-7, 0, -3); //for testing , coffeeSmooke
 
     this.view.target.smoothed = this.view.target.value.clone();
     this.view.target.smoothing = 0.005;

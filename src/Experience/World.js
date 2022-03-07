@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import Experience from './Experience.js';
 import GoogleLeds from './GoogleLeds.js';
 import CoffeeSteam from './CoffeeSteam.js';
+import TopChair from './TopChair.js';
 
 export default class World {
   constructor(_options) {
@@ -16,6 +17,7 @@ export default class World {
         this.setRoom();
         this.setGoogleLeds();
         this.setCoffeeSteam();
+        this.setTopChair();
       }
     });
   }
@@ -31,7 +33,7 @@ export default class World {
 
   setRoom() {
     this.room = {};
-    this.room.model = this.resources.items.roomModal.scene;
+    this.room.model = this.resources.items.roomModel.scene;
 
     this.room.texture = this.resources.items.bakedTexture;
     this.room.texture.encoding = THREE.sRGBEncoding;
@@ -48,9 +50,6 @@ export default class World {
     });
 
     this.scene.add(this.room.model);
-    const directionalLight = new THREE.DirectionalLight('#ffffff', 3);
-    directionalLight.position.set(-15, 15, 15);
-    this.scene.add(directionalLight);
   }
 
   setGoogleLeds() {
@@ -61,11 +60,16 @@ export default class World {
     this.coffeeSteam = new CoffeeSteam();
   }
 
+  setTopChair() {
+    this.topChair = new TopChair();
+  }
+
   resize() {}
 
   update() {
     if (this.googleLeds) this.googleLeds.update();
     if (this.coffeeSteam) this.coffeeSteam.update();
+    if (this.topChair) this.topChair.update();
   }
 
   destroy() {}

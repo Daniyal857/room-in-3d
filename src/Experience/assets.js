@@ -14,12 +14,17 @@ export default [
         type: 'model'
       },
       {
+        name: 'topChairModel',
+        source: '/assets/topChairModel.glb',
+        type: 'model'
+      },
+      {
         name: 'coffeeSteamModel',
         source: '/assets/coffeeSteamModel.glb',
         type: 'model'
       },
       { name: 'bakedTexture', source: '/assets/baked.jpg', type: 'texture' },
-      { name: 'roomModal', source: '/assets/roomModal.glb', type: 'model' }
+      { name: 'roomModel', source: '/assets/roomModal.glb', type: 'model' }
     ]
   }
 ];
