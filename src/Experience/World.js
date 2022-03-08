@@ -3,6 +3,7 @@ import Experience from './Experience.js';
 import GoogleLeds from './GoogleLeds.js';
 import CoffeeSteam from './CoffeeSteam.js';
 import TopChair from './TopChair.js';
+import BouncingLogo from './BouncingLogo.js';
 
 export default class World {
   constructor(_options) {
@@ -18,6 +19,7 @@ export default class World {
         this.setGoogleLeds();
         this.setCoffeeSteam();
         this.setTopChair();
+        this.setBouncingLogo();
       }
     });
   }
@@ -64,12 +66,17 @@ export default class World {
     this.topChair = new TopChair();
   }
 
+  setBouncingLogo() {
+    this.bouncingLogo = new BouncingLogo();
+  }
+
   resize() {}
 
   update() {
     if (this.googleLeds) this.googleLeds.update();
     if (this.coffeeSteam) this.coffeeSteam.update();
     if (this.topChair) this.topChair.update();
+    if (this.bouncingLogo) this.bouncingLogo.update();
   }
 
   destroy() {}

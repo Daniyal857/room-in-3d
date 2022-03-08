@@ -9,6 +9,11 @@ export default [
         type: 'texture'
       },
       {
+        name: 'threejsJourneyLogoTexture',
+        source: '/assets/threejsJourneyLogoTexture.png',
+        type: 'texture'
+      },
+      {
         name: 'googleHomeLedsModel',
         source: '/assets/googleHomeLedsModel.glb',
         type: 'model'
@@ -24,7 +29,7 @@ export default [
         type: 'model'
       },
       { name: 'bakedTexture', source: '/assets/baked.jpg', type: 'texture' },
-      { name: 'roomModel', source: '/assets/roomModal.glb', type: 'model' }
+      { name: 'roomModel', source: '/assets/roomModel.glb', type: 'model' }
     ]
   }
 ];
