@@ -22,7 +22,7 @@ export default class World {
         this.setCoffeeSteam();
         this.setTopChair();
         this.setBouncingLogo();
-        this.setElgatoLight();
+        // this.setElgatoLight();
         this.setScreens();
       }
     });
@@ -74,9 +74,9 @@ export default class World {
     this.bouncingLogo = new BouncingLogo();
   }
 
-  setElgatoLight() {
-    this.elgatoLight = new ElgatoLight();
-  }
+  // setElgatoLight() {
+  //   this.elgatoLight = new ElgatoLight();
+  // }
 
   setScreens() {
     this.pcScreen = new Screen(
