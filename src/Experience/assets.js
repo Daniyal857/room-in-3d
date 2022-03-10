@@ -24,8 +24,23 @@ export default [
         type: 'model'
       },
       {
+        name: 'elgatoLightModel',
+        source: '/assets/elgatoLightModel.glb',
+        type: 'model'
+      },
+      {
         name: 'coffeeSteamModel',
         source: '/assets/coffeeSteamModel.glb',
+        type: 'model'
+      },
+      {
+        name: 'monitorScreenModel',
+        source: '/assets/monitorScreenModel.glb',
+        type: 'model'
+      },
+      {
+        name: 'macScreenModel',
+        source: '/assets/macScreenModel.glb',
         type: 'model'
       },
       { name: 'bakedTexture', source: '/assets/baked.jpg', type: 'texture' },

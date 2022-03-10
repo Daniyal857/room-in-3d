@@ -4,6 +4,8 @@ import GoogleLeds from './GoogleLeds.js';
 import CoffeeSteam from './CoffeeSteam.js';
 import TopChair from './TopChair.js';
 import BouncingLogo from './BouncingLogo.js';
+import ElgatoLight from './ElgatoLight.js';
+import Screen from './Screen.js';
 
 export default class World {
   constructor(_options) {
@@ -20,6 +22,8 @@ export default class World {
         this.setCoffeeSteam();
         this.setTopChair();
         this.setBouncingLogo();
+        this.setElgatoLight();
+        this.setScreens();
       }
     });
   }
@@ -68,6 +72,21 @@ export default class World {
 
   setBouncingLogo() {
     this.bouncingLogo = new BouncingLogo();
+  }
+
+  setElgatoLight() {
+    this.elgatoLight = new ElgatoLight();
+  }
+
+  setScreens() {
+    this.pcScreen = new Screen(
+      this.resources.items.monitorScreenModel.scene.children[0],
+      '/assets/videoPortfolio.mp4'
+    );
+    this.macScreen = new Screen(
+      this.resources.items.macScreenModel.scene.children[0],
+      '/assets/videoPortfolio.mp4'
+    );
   }
 
   resize() {}
