@@ -31,7 +31,7 @@ export default class Navigation {
     this.view.spherical.limits = {};
     this.view.spherical.limits.radius = { min: 10, max: 50 };
     this.view.spherical.limits.phi = { min: 0.01, max: Math.PI * 0.5 };
-    this.view.spherical.limits.theta = { min: -Math.PI * 0.5, max: 0 };
+    this.view.spherical.limits.theta = { min: -Math.PI * 0.05, max: 1.5 };
 
     this.view.target = {};
     this.view.target.value = new THREE.Vector3(0, 2, 0);
@@ -225,13 +225,13 @@ export default class Navigation {
         this.config.smallestSide;
 
       // Apply limits
-      // this.view.spherical.value.theta = Math.min(
-      //   Math.max(
-      //     this.view.spherical.value.theta,
-      //     this.view.spherical.limits.theta.min
-      //   ),
-      //   this.view.spherical.limits.theta.max
-      // );
+      this.view.spherical.value.theta = Math.min(
+        Math.max(
+          this.view.spherical.value.theta,
+          this.view.spherical.limits.theta.min
+        ),
+        this.view.spherical.limits.theta.max
+      );
       this.view.spherical.value.phi = Math.min(
         Math.max(
           this.view.spherical.value.phi,
