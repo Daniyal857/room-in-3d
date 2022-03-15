@@ -62,11 +62,10 @@ export default class CoffeeSteam {
         {
           label: 'uTimeFrequency',
           min: 0.0001,
-          max: 0.001,
+          max: 0.005,
           step: 0.0001
         }
       );
-
       this.debugFolder.addInput(
         this.model.material.uniforms.uUvFrequency.value,
         'x',
@@ -76,7 +75,6 @@ export default class CoffeeSteam {
           step: 0.001
         }
       );
-
       this.debugFolder.addInput(
         this.model.material.uniforms.uUvFrequency.value,
         'y',
