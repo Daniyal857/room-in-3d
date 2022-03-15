@@ -1,5 +1,5 @@
 {
-  "repository": "#",
+  "repository": "3d-room",
   "license": "UNLICENSED",
   "scripts": {
     "build": "webpack --config ./bundler/webpack.prod.js",
