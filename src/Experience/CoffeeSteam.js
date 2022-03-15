@@ -1,8 +1,8 @@
 import * as THREE from 'three';
 
 import Experience from './Experience.js';
-import vertexShader from './shaders/coffeeSteam/vertex.glsl';
-import fragmentShader from './shaders/coffeeSteam/fragment.glsl';
+import vertexShader from '../Experience/shaders/coffeeSteam/vertex.glsl';
+import fragmentShader from '../Experience/shaders/coffeeSteam/fragment.glsl';
 
 export default class CoffeeSteam {
   constructor() {
