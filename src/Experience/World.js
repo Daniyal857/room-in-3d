@@ -19,7 +19,7 @@ export default class World {
         // this.setDummy();
         this.setRoom();
         this.setGoogleLeds();
-        // this.setCoffeeSteam();
+        this.setCoffeeSteam();
         this.setTopChair();
         this.setBouncingLogo();
         // this.setElgatoLight();
