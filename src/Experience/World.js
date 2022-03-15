@@ -81,11 +81,11 @@ export default class World {
   setScreens() {
     this.pcScreen = new Screen(
       this.resources.items.monitorScreenModel.scene.children[0],
-      '/assets/videoPortfolio.mp4'
+      '/assets/videoRoom.mp4'
     );
     this.macScreen = new Screen(
       this.resources.items.macScreenModel.scene.children[0],
-      '/assets/videoPortfolio.mp4'
+      '/assets/videoPortal.mp4'
     );
   }
 
